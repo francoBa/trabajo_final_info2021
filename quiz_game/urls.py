@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+'''
+  Importamos las applicaciones para manejar datos y vistas
+'''
+from datos.views import *
+from app.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
