@@ -1,16 +1,16 @@
 from django.db import models
 
 # Create your models here.
-# class Usuario(models.Model):
-#   nombre = models.CharField(max_length=50, null=False, blank=False)
-#   apellido = models.CharField(max_length=255)
-#   email = models.CharField(max_length=255)
-#   puntaje = models.IntegerField()
-#   fecha_ult_acceso = models.DateField(auto_now=True, auto_now_add=True)
-#   estado = models.IntegerField()
+class Usuario(models.Model):
+  nombre = models.CharField(max_length=50, null=False, blank=False)
+  apellido = models.CharField(max_length=255)
+  email = models.CharField(max_length=255)
+  puntaje = models.IntegerField()
+  fecha_ult_acceso = models.DateField(auto_now_add=True)
+  estado = models.IntegerField()
 
-#   def __str__(self) -> str:
-#     return f'Usuario {self.id}: {self.nombre} {self.apellido} {self.email} {self.puntaje}'
+  def __str__(self) -> str:
+    return f'Usuario {self.id}: {self.nombre} {self.apellido} {self.email} {self.puntaje}'
 
 class Preguntas(models.Model):
   '''
@@ -20,7 +20,7 @@ class Preguntas(models.Model):
   nivel = models.IntegerField()
 
   def __str__(self) -> str:
-    return f'Pregunta {self.id}: {self.nivel} {self.pregunta}'
+    return f'Pregunta {self.id}: nivel {self.nivel} {self.pregunta}'
 
 class Respuestas(models.Model):
   '''
@@ -30,4 +30,5 @@ class Respuestas(models.Model):
   pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE, null=False)
 
   def __str__(self) -> str:
-    return f'Respuesta {self.id}: {self.respuesta} {self.pregunta}'
+    # return f'Respuesta {self.id}: {self.respuesta} {self.pregunta}'
+    return f'Respuesta {self.id}: {self.respuesta}'
