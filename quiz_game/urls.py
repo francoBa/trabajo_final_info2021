@@ -23,5 +23,6 @@ from datos.views import *
 from app.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+  path('admin/', admin.site.urls),
+  path('', inicio, name='index')
 ]
