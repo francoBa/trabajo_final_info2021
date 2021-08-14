@@ -1,34 +1,29 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Usuario(models.Model):
-  nombre = models.CharField(max_length=50, null=False, blank=False)
-  apellido = models.CharField(max_length=255)
-  email = models.CharField(max_length=255)
-  puntaje = models.IntegerField()
-  fecha_ult_acceso = models.DateField(auto_now_add=True)
-  estado = models.IntegerField()
+class Usuario(AbstractUser):
+  puntaje = models.IntegerField(null=True)
 
   def __str__(self) -> str:
-    return f'Usuario {self.id}: {self.nombre} {self.apellido} {self.email} {self.puntaje}'
+    return f'Usuario {self.id}: {self.username} {self.first_name} {self.last_name} {self.email} {self.is_staff} {self.is_active} {self.puntaje}'
 
-class Preguntas(models.Model):
+class Pregunta(models.Model):
   '''
     Tabla de Preguntas tiene relación con respuestas y nivelación
   '''
   pregunta = models.CharField(max_length=255, null=False, blank=False)
-  nivel = models.IntegerField()
+  categoria = models.IntegerField()
 
   def __str__(self) -> str:
-    return f'Pregunta {self.id}: nivel {self.nivel} {self.pregunta}'
+    return f'Pregunta {self.id}: nivel {self.categoria} {self.pregunta}'
 
-class Respuestas(models.Model):
+class Respuesta(models.Model):
   '''
-    Tabla de respuestas relacionada a la pregunta creada. No puede cargarse sin relación
+    Tabla de Respuestas relacionada a la pregunta creada. No puede cargarse sin relación
   '''
   respuesta = models.CharField(max_length=255, null=False, blank=False)
-  pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE, null=False)
+  pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, null=False)
 
   def __str__(self) -> str:
-    # return f'Respuesta {self.id}: {self.respuesta} {self.pregunta}'
     return f'Respuesta {self.id}: {self.respuesta}'

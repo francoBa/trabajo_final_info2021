@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo usuario</title>
+</head>
+
+<body>
+  {% block contenido %}
+  <h1>Crear nuevo usuario</h1>
+  <div>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">Crear</button>
+    </form>
+  </div>
+  {% endblock %}
+</body>
+
+</html>
