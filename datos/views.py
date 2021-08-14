@@ -8,12 +8,8 @@ from .forms import *
 
 # Create your views here.
 def iniciar_sesion(request):
-  # siguiente = request.GET.get("next", None)
-
-  # categorias = Categoria.objects.all()
   form = AuthenticationForm()
   if request.method == "POST":
-    # siguiente = request.POST.get("next", None)
     form = AuthenticationForm(data=request.POST)
     if form.is_valid():
       username = form.cleaned_data["username"]
@@ -27,11 +23,8 @@ def iniciar_sesion(request):
           return redirect('index')
     else:
       return redirect('nuevo_usuario')
-  return render(request, "cuenta/login.html", {
-    "form": form,
-    # "categorias": categorias,
-    # "siguiente": siguiente, 
-  })
+  return render(request, "cuenta/login.html", {"form": form})
+
 
 def nuevo_usuario(request):
   if request.method == 'POST':
