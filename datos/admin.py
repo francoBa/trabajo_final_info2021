@@ -1,8 +1,7 @@
-from datos.models import Preguntas, Respuestas
+from datos.models import *
 from django.contrib import admin
 
 # Register your models here.
-from datos import *
-
-admin.site.register(Preguntas)
-admin.site.register(Respuestas)
+admin.site.register(Pregunta)
+admin.site.register(Respuesta)
+admin.site.register(Usuario)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+  {% block contenido %}
+  <h1>Iniciar Sesión</h1>
+  <div>
+    <form method="POST">
+      {% csrf_token %}
+      <div>
+        <div>
+          <label for="id_username">Nombre</label>
+          {{form.username}}
+        </div>
+      </div>
+      <div>
+        <div>
+          <label for="id_password">Contraseña</label>
+          {{ form.password }}
+        </div>
+        <!-- <input type="hidden" name="next" value="{{ siguiente }}"> -->
+        <button type="submit">Iniciar Sesion</button>
+    </form>
+  </div>
+  <!-- {#% if user.is_anonymous %} -->
+  <a href="{% url 'nuevo_usuario' %}">Registrarse</a>
+  <!-- {#% endif %} -->
+
+  {% endblock %}
+</body>
+
+</html>
