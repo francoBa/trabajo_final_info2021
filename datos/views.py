@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-from .models import Usuario
+from .models import *
+from .forms import *
 
 
 # Create your views here.
@@ -33,5 +34,13 @@ def iniciar_sesion(request):
   })
 
 def nuevo_usuario(request):
-  form = UserCreationForm()
+  if request.method == 'POST':
+    form = get_user_model()
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('index')
+  else:
+    form = SignUpForm()
+  
   return render(request, 'cuenta/nuevo_usuario.html', {'form': form})
